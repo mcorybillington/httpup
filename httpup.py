@@ -20,10 +20,10 @@ class Sock:
         except socket.gaierror as e:
             self.is_valid_addr = False
             if self.no_error:
-                return False
+                exit(1)
             else:
-                print("Invalid Host")
-                exit(255)
+                print("Invalid Host: ", self.host)
+                return 1
 
     def get_ports(self):
         try:
@@ -66,16 +66,16 @@ class Tcp(Sock):
                 sock.settimeout(self.timeout)
                 conn = sock.connect_ex((self.ip, port))
                 if not conn:
-                    return True
+                    return 0
         return 1
 
 
 def arguments():
     p = argparse.ArgumentParser(prog=sys.argv[0])
     p.add_argument('host', type=str)
-    p.add_argument('-p', type=str, help='Ports to check. Ex: -p 80 443 445')
+    p.add_argument('-p', type=str, help='Ports to check. Ex: -p 22,80,443 or 80-90')
     p.add_argument('-t', type=float, help='Timeout')
-    p.add_argument('--no-error', dest='noerror', action='store_true', help="Return false and don't fail out")
+    p.add_argument('--no-error', dest='noerror', action='store_true', help="Return 1 and don't output error message")
     p.set_defaults(noerror=False)
     return p.parse_args()
 
