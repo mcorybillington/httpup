@@ -8,18 +8,17 @@ outside of the python standard library. I wrote this to aid in checking to see i
 
 `python httpup.py [-h] [-p P] [-t T] [--no-error] host`
 
-Ports can be specified as comma separated values, or as a range
-Ports example for comma separated: `-p 22,80,443,445`
-Ports example for range: `-p 80-90`
+Ports can be specified as comma separated values, or as a range:  
+Ports example for comma separated: `-p 22,80,443,445`  
+Ports example for range: `-p 80-90`  
 
-Timeout is in seconds:
-`-t 0.5` will wait for a response for 0.5 seconds
-
+Timeout is in seconds:  
+`-t 0.5` will wait for a response for 0.5 seconds  
 `--no-error` will simply return a `1` and will not output any error messages.
 
 ### Output
 
-Three possible outcomes:
-`0` - Host is up on one of the ports specified
-`1` - Host is down
+Three possible outcomes:  
+`0` - Host is up on one of the ports specified  
+`1` - Host is down  
 `Invalid Host: < host >` - Address resolution failed for the specified host 
